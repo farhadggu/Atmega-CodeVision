@@ -1,0 +1,115 @@
+/*******************************************************
+This program was created by the
+CodeWizardAVR V3.14 Advanced
+Automatic Program Generator
+© Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
+http://www.hpinfotech.com
+
+Project : 
+Version : 
+Date    : 1/1/2024
+Author  : 
+Company : 
+Comments: 
+
+
+Chip type               : ATmega16
+Program type            : Application
+AVR Core Clock frequency: 4.000000 MHz
+Memory model            : Small
+External RAM size       : 0
+Data Stack size         : 256
+*******************************************************/
+
+#include <mega16.h>
+
+// Alphanumeric LCD functions
+#include <alcd.h>
+
+#define keypin PINB
+
+char read_key = '\0' , read_val = '\0';
+
+interrupt [EXT_INT0] void read_keypad(void)
+{
+    read_val = 0x00 & keypin;
+    switch ( read_val )
+    {
+        case 0x00 :
+            read_key = '0';
+            break;
+        case 0x01 :
+            read_key = '1';
+            break;
+        case 0x02 :
+            read_key = '2';
+            break;
+        case 0x03 :
+            read_key = '3';
+            break;
+        case 0x04 :
+            read_key = '4';
+            break;
+        case 0x05 :
+            read_key = '5';
+            break;
+        case 0x06 :
+            read_key = '6';
+            break;
+        case 0x07 :
+            read_key = '7';
+            break;
+        case 0x08 :
+            read_key = '8';
+            break;
+        case 0x09 :
+            read_key = '9';
+            break;
+        case 0x0a :
+            read_key = 'A';
+            break;
+        case 0x0b :
+            read_key = 'B';
+            break;
+        case 0x0c :
+            read_key = 'C';
+            break;
+        case 0x0d :
+            read_key = 'D';
+            break;
+        case 0x0e :
+            read_key = 'E';
+            break;
+        case 0x0f :
+            read_key = 'F';
+            break;      
+    }
+    
+    lcd_putchar( read_key ) ;
+
+}
+
+void main(void)
+{
+
+DDRB = 0x00;
+PORTB = 0xff;
+DDRC = 0xff;   
+PORTC = 0x00;
+
+GICR|=(0<<INT1) | (1<<INT0) | (0<<INT2);
+MCUCR=(0<<ISC11) | (0<<ISC10) | (1<<ISC01) | (1<<ISC00);
+MCUCSR=(0<<ISC2);
+GIFR=(0<<INTF1) | (1<<INTF0) | (0<<INTF2); 
+
+lcd_init(16);
+
+// Global enable interrupts
+#asm("sei")
+
+while (1)
+      {
+      // Place your code here
+
+      }
+}

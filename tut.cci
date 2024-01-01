@@ -1,0 +1,8 @@
+VERSION:3 SOURCE_TIMESTAMP:582190E8
+NODE:I LEVEL:0 LINE:24 "D:\InstalledApps\CodeVisionAvr\inc\mega16.h"
+NODE:I LEVEL:0 LINE:27 "D:\InstalledApps\CodeVisionAvr\inc\alcd.h"
+NODE:M LEVEL:0 LINE:29 "keypin"
+NODE:V LEVEL:0 LINE:31 "read_key -> R5"
+NODE:V LEVEL:0 LINE:31 "read_val -> R4"
+NODE:F LEVEL:0 LINE:33 "read_keypad(void)"
+NODE:F LEVEL:0 LINE:92 "main(void)"
